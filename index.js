@@ -1,3 +1,4 @@
+
 const express = require('express')
 const log4js = require('log4js')
 const config = require('config')
@@ -9,7 +10,7 @@ logger.level = config.loglevel
 let db
 
 logger.info("Starting echo app!")
-logger.debug(config)
+logger.debug("Configuration: ", config)
 
 if (!config.persist) {
   logger.warn('Persistency is OFF')
@@ -30,7 +31,7 @@ if (!config.persist) {
 }
 
 const echo = (req, res) => {
-  logger.debug(req)
+  logger.debug("Request: ", req)
   const input = 'input' in req.query ? req.query.input : ''
   if (input.length == 0) {
     logger.error('User requested echo for empty string!')
