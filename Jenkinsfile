@@ -9,8 +9,8 @@ pipeline{
                     }
                     steps{
                         echo "========executing Master Build========"
-                        sh 'docker build -t gcr.io/eternal-psyche-256708/echo_ex:1.0-${BUILD_NUMBER} .'
-                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:1.0-${BUILD_NUMBER}'
+                        sh 'docker build -t gcr.io/eternal-psyche-256708/echo_ex:1.0.${BUILD_NUMBER} .'
+                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:1.0.${BUILD_NUMBER}'
                     }
                 }
                 stage("Build Dev") {
