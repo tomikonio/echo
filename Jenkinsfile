@@ -9,8 +9,8 @@ pipeline{
                     }
                     steps{
                         echo "========executing Master Build========"
-                        sh 'docker build -t gcr.io/eternal-psyche-256708/echo_ex:1.0.${BUILD_NUMBER} .'
-                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:1.0.${BUILD_NUMBER}'
+                        sh 'docker build -t shukiyahu/echo_ex:1.0.${BUILD_NUMBER} .'
+                        sh 'docker push shukiyahu/echo_ex:1.0.${BUILD_NUMBER}'
                     }
                 }
                 stage("Build Dev") {
@@ -19,8 +19,8 @@ pipeline{
                     }
                     steps{
                         echo "========executing Dev Build========"
-                        sh 'docker build -t gcr.io/eternal-psyche-256708/echo_ex:dev-${GIT_COMMIT} .'
-                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:dev-${GIT_COMMIT}'
+                        sh 'docker build -t shukiyahu/echo_ex:dev-${GIT_COMMIT} .'
+                        sh 'docker push shukiyahu/echo_ex:dev-${GIT_COMMIT}'
                     }
                 }
                 stage("Build Staging") {
@@ -29,8 +29,8 @@ pipeline{
                     }
                     steps{
                         echo "========executing Staging Build========"
-                        sh 'docker build -t gcr.io/eternal-psyche-256708/echo_ex:staging-${GIT_COMMIT} .'
-                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:staging-${GIT_COMMIT}'
+                        sh 'docker build -t shukiyahu/echo_ex:staging-${GIT_COMMIT} .'
+                        sh 'docker push shukiyahu/echo_ex:staging-${GIT_COMMIT}'
                     }
                 }
             }
