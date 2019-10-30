@@ -20,7 +20,7 @@ pipeline{
                     steps{
                         echo "========executing Dev Build========"
                         sh 'docker build -t gcr.io/eternal-psyche-256708/echo_ex:dev-${GIT_COMMIT} .'
-                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:1.0-${GIT_COMMIT}'
+                        sh 'docker push gcr.io/eternal-psyche-256708/echo_ex:dev-${GIT_COMMIT}'
                     }
                 }
                 stage("Build Staging") {
