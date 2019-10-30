@@ -4,7 +4,7 @@ pipeline{
         stage("Build"){
             steps{
                 echo "========executing Build========"
-                sh 'docker build -t gcr.io/eternal-psyche-256708/1.0-${BUILD_NUMBER}'
+                sh 'docker build -t gcr.io/eternal-psyche-256708/1.0-${BUILD_NUMBER} .'
                 sh 'docker push gcr.io/eternal-psyche-256708/1.0-${BUILD_NUMBER}'
             }
             // post{
