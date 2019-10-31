@@ -23,10 +23,10 @@ pipeline{
                         sh('docker push shukiyahu/echo_ex:1.0.${BUILD_NUMBER}')
                     }
                     else if ("$GIT_BRANCH" == 'dev') {
-                        sh('docker push shukiyahu/echo_ex:dev-${GIT_COMMIT} .')
+                        sh('docker push shukiyahu/echo_ex:dev-${GIT_COMMIT}')
                     }
                     else if ("$GIT_BRANCH" == 'staging') {
-                        sh('docker push shukiyahu/echo_ex:staging-${GIT_COMMIT} .')
+                        sh('docker push shukiyahu/echo_ex:staging-${GIT_COMMIT}')
                     }
                 }
             }
