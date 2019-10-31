@@ -1,8 +1,19 @@
 pipeline{
     agent any
+    post {
+        failure {
+            updateGitlabCommitStatus name: 'Build', state: 'failed'
+            updateGitlabCommitStatus name: 'Publish', state: 'failed'
+        }
+        success {
+            updateGitlabCommitStatus name: 'Build', state: 'success'
+            updateGitlabCommitStatus name: 'Publish', state: 'success'
+        }
+    }
     options
     {
         gitLabConnection('Gitlab')
+        gitlabBuilds(builds: ['Build', 'Publish'])
     }
     triggers
     {
