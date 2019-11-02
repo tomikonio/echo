@@ -27,3 +27,4 @@ jobs:
       containerRegistry: 'dokcerHub'
       repository: 'shukiyahu/echo_ex'
       command: 'push'
+      tags: $(Build.BuildNumber)
