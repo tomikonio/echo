@@ -21,6 +21,7 @@ jobs:
       tags: $(Build.BuildNumber)
 
 - job: Push
+  dependsOn: Build
   steps:
   - task: Docker@2
     inputs:
