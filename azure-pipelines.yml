@@ -9,10 +9,21 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'dokcerHub'
-    repository: 'echo_ex'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+jobs:
+- job: Build
+  steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'dokcerHub'
+      repository: 'shukiyahu/echo_ex'
+      command: build
+      Dockerfile: '**/Dockerfile'
+      tags: $(Build.BuildNumber)
+
+- job: Push
+  steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'dokcerHub'
+      repository: 'shukiyahu/echo_ex'
+      command: 'push'
