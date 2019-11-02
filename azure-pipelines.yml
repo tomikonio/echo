@@ -16,16 +16,16 @@ jobs:
     inputs:
       containerRegistry: 'dokcerHub'
       repository: 'shukiyahu/echo_ex'
-      command: build
+      command: buildAndPush
       Dockerfile: '**/Dockerfile'
       tags: $(Build.BuildNumber)
 
-- job: Push
-  dependsOn: Build
-  steps:
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'dokcerHub'
-      repository: 'shukiyahu/echo_ex'
-      command: 'push'
-      tags: $(Build.BuildNumber)
+# - job: Push
+#   dependsOn: Build
+#   steps:
+#   - task: Docker@2
+#     inputs:
+#       containerRegistry: 'dokcerHub'
+#       repository: 'shukiyahu/echo_ex'
+#       command: 'push'
+#       tags: $(Build.BuildNumber)
