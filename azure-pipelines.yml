@@ -18,7 +18,7 @@ jobs:
       repository: 'shukiyahu/echo_ex'
       command: buildAndPush
       Dockerfile: '**/Dockerfile'
-      tags: $(Build.BuildNumber)
+      tags: 1.0.$(Build.BuildId)
 
 # - job: Push
 #   dependsOn: Build
