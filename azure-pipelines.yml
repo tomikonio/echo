@@ -3,29 +3,40 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+# trigger:
+# - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
 - job: Build
+  displayName: Build And Push
   steps:
   - task: Docker@2
+    displayName: Master
     inputs:
       containerRegistry: 'dokcerHub'
       repository: 'shukiyahu/echo_ex'
       command: buildAndPush
       Dockerfile: '**/Dockerfile'
       tags: 1.0.$(Build.BuildId)
-
-# - job: Push
-#   dependsOn: Build
-#   steps:
-#   - task: Docker@2
-#     inputs:
-#       containerRegistry: 'dokcerHub'
-#       repository: 'shukiyahu/echo_ex'
-#       command: 'push'
-#       tags: $(Build.BuildNumber)
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  - task: Docker@2
+    displayName: Dev
+    inputs:
+      containerRegistry: 'dokcerHub'
+      repository: 'shukiyahu/echo_ex'
+      command: buildAndPush
+      Dockerfile: '**/Dockerfile'
+      tags: dev-$(Build.SourceVersion)
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/dev')
+  - task: Docker@2
+    displayName: Staging
+    inputs:
+      containerRegistry: 'dokcerHub'
+      repository: 'shukiyahu/echo_ex'
+      command: buildAndPush
+      Dockerfile: '**/Dockerfile'
+      tags: staging-$(Build.SourceVersion)
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/staging')
